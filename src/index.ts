@@ -1,24 +1,20 @@
-export interface Env {}
-
 const html = ({
   headline,
   description,
   imageUrl,
+  iconUrl,
   siteName,
-  year,
-  month,
-  day,
+  date,
 }: {
   headline: string;
   description: string;
   imageUrl: string;
+  iconUrl: string;
   siteName: string;
-  year: string;
-  month: string;
-  day: string;
+  date: string;
 }) => `
 	<!DOCTYPE html>
-	<html>
+	<html style="height: 100%;">
 		<head>
 			<title>${headline}</title>
 			<meta charset="utf-8">
@@ -26,7 +22,7 @@ const html = ({
 			<meta property="og:description" content="${description}" />
 
 			<meta property="twitter:label1" content="Published">
-			<meta property="twitter:data1" content="${year}-${month}-${day} 7:52am">
+			<meta property="twitter:data1" content="${date}">
 			<meta property="twitter:label2" content="Reading time">
 			<meta property="twitter:data2" content="6 minutes">
 
@@ -35,33 +31,35 @@ const html = ({
 			<meta property="og:site_name" content="${siteName}">
 			<meta property="og:locale" content="en_US">
 
-			<link rel="shortcut icon" href="./icon.png">
+			<link rel="shortcut icon" href="${iconUrl}">
 		</head>
-		<body style="height: 100%; display: flex;">
-			<h1 style="margin: auto;">Fake news is easy now.</h1>
+		<body style="height: 100%; display: flex; justify-content: center;
+    align-items: center; ">
+			<div>Loading...</div>
 		</body>
 	</html>
 `;
 
 export default {
-  async fetch(
-    request: Request,
-    env: Env,
-    ctx: ExecutionContext
-  ): Promise<Response> {
+  async fetch(request: Request): Promise<Response> {
     try {
+      const { pathname, searchParams } = new URL(request.url);
+      const { v: iconUrl } = Object.fromEntries(
+        new URLSearchParams(searchParams).entries()
+      );
       const [, year, month, day, siteName, headline, description, imageUrl] =
-        new URL(request.url).pathname.split('/');
+        pathname.split('/');
 
       return new Response(
         html({
-          headline,
-          description,
-          siteName,
+          headline: decodeURIComponent(headline),
+          description: decodeURIComponent(description),
+          siteName: decodeURIComponent(siteName),
           imageUrl: atob(imageUrl),
-          year,
-          month,
-          day,
+          iconUrl: atob(iconUrl),
+          date: new Date(`${year}-${month}-${day}`)
+            .toUTCString()
+            .replace('00:00:00 GMT', '8:42 AM'),
         }),
         {
           headers: {
