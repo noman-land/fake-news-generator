@@ -1,0 +1,6 @@
+name = "fake-news-generator"
+main = "src/index.ts"
+node_compat = true
+workers_dev = false
+compatibility_date = "2023-03-08"
+route = { pattern = "https://news.noman.land", zone_name = "noman.land" }

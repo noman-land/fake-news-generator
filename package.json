@@ -1,0 +1,18 @@
+{
+  "name": "fake-news-generator",
+  "version": "0.1.0",
+  "description": "Customizable fake news generator",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx wrangler dev",
+    "tail": "npx wrangler tail",
+    "publish": "npx wrangler publish"
+  },
+  "author": "Noman",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230307.0",
+    "typescript": "^4.9.5",
+    "wrangler": "^2.12.1"
+  }
+}
