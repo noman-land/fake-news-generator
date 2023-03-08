@@ -13,31 +13,30 @@ const html = ({
   siteName: string;
   date: string;
 }) => `
-	<!DOCTYPE html>
-	<html style="height: 100%;">
-		<head>
-			<title>${headline}</title>
-			<meta charset="utf-8">
-			<meta property="og:title" content="${headline}" />
-			<meta property="og:description" content="${description}" />
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>${headline}</title>
+      <meta charset="utf-8">
+      <meta property="og:title" content="${headline}" />
+      <meta property="og:description" content="${description}" />
 
-			<meta property="twitter:label1" content="Published">
-			<meta property="twitter:data1" content="${date}">
-			<meta property="twitter:label2" content="Reading time">
-			<meta property="twitter:data2" content="6 minutes">
+      <meta property="twitter:label1" content="Published">
+      <meta property="twitter:data1" content="${date}">
+      <meta property="twitter:label2" content="Reading time">
+      <meta property="twitter:data2" content="6 minutes">
 
-			<meta property="og:image" content="${imageUrl}" />
-			<meta property="og:type" content="article">
-			<meta property="og:site_name" content="${siteName}">
-			<meta property="og:locale" content="en_US">
+      <meta property="og:image" content="${imageUrl}" />
+      <meta property="og:type" content="article">
+      <meta property="og:site_name" content="${siteName}">
+      <meta property="og:locale" content="en_US">
 
-			<link rel="shortcut icon" href="${iconUrl}">
-		</head>
-		<body style="height: 100%; display: flex; justify-content: center;
-    align-items: center; ">
-			<div>Loading...</div>
-		</body>
-	</html>
+      <link rel="shortcut icon" href="${iconUrl}">
+    </head>
+    <body>
+      <div>You must enable Javascript to view this page.</div>
+    </body>
+  </html>
 `;
 
 export default {
