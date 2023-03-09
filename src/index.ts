@@ -38,7 +38,7 @@ const html = ({
   const mm = pad((year * day) % 60);
   const ss = pad((year * month * headline.length) % 60);
   const timestamp = `${y}-${m}-${d}T${hh}:${mm}:${ss}Z`;
-  const cleanImageUrl = imageUrl.replace(/http(?s):/, '');
+  const cleanImageUrl = imageUrl.replace(/http(s?):/, '');
 
   return `
     <!DOCTYPE html>
