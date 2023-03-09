@@ -38,6 +38,7 @@ const html = ({
   const mm = pad((year * day) % 60);
   const ss = pad((year * month * headline.length) % 60);
   const timestamp = `${y}-${m}-${d}T${hh}:${mm}:${ss}Z`;
+  const cleanImageUrl = imageUrl.replace(/http(?s):/, '');
 
   return `
     <!DOCTYPE html>
@@ -49,7 +50,7 @@ const html = ({
         <meta property="og:description" content="${description}" />
         <meta name="article:published_time" content="${timestamp}">
 
-        <meta property="og:image" content="${imageUrl}" />
+        <meta property="og:image" content="${cleanImageUrl}" />
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="${siteName}">
         <meta property="og:locale" content="en_US">
