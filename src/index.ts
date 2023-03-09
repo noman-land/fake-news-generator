@@ -34,6 +34,7 @@ const html = ({
   const y = pad(year);
   const m = pad(month);
   const d = pad(day);
+  // Generate a fake but deterministic time
   const hh = pad((year * month * day) % 24);
   const mm = pad((year * day) % 60);
   const ss = pad((year * month * headline.length) % 60);
