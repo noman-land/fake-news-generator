@@ -96,11 +96,7 @@ export default {
           day: parseInt(day, 10),
           props: fbshid ? JSON.parse(atob(fbshid)) : {},
         }),
-        {
-          headers: {
-            'Content-type': 'text/html',
-          },
-        }
+        { headers: { 'Content-type': 'text/html' } }
       );
     } catch (e) {
       console.log('\n\n', e, '\n\n');
