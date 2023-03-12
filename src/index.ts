@@ -74,13 +74,27 @@ const html = ({
   `;
 };
 
-const browsers = ['Firefox', 'Chrome', 'Safari', 'Edge', 'Vivaldi'];
+const browsers = [
+  'Firefox',
+  'Chrome',
+  'Safari',
+  'Edge',
+  'Vivaldi',
+  'Opera',
+  'OPR',
+  'Chromium',
+  'Seamonkey',
+  'Gecko',
+  'AppleWebKit',
+];
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const { pathname, searchParams } = new URL(request.url);
     const fbshid = searchParams.get('fbshid');
     const userAgent = request.headers.get('user-agent') || '';
+
+    console.log('User Agent:', userAgent);
 
     if (
       !searchParams.has('nowait') &&
