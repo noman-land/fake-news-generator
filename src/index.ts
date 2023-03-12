@@ -77,6 +77,7 @@ const html = ({
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     // await wait(5000);
+    console.log('User Agent:', request.headers.get('user-agent'));
 
     try {
       const { pathname, searchParams } = new URL(request.url);
