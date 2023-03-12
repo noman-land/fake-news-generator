@@ -74,16 +74,24 @@ const html = ({
   `;
 };
 
+const browsers = ['Firefox', 'Chrome', 'Safari', 'Edge', 'Vivaldi'];
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    // await wait(5000);
-    console.log('User Agent:', request.headers.get('user-agent'));
+    const { pathname, searchParams } = new URL(request.url);
+    const fbshid = searchParams.get('fbshid');
+    const userAgent = request.headers.get('user-agent') || '';
+
+    if (
+      !searchParams.has('nowait') &&
+      browsers.some(b => userAgent.includes(b))
+    ) {
+      await wait(15_000);
+    }
 
     try {
-      const { pathname, searchParams } = new URL(request.url);
       const [_topic, year, month, day, headline, description, imageUrl] =
         pathname.slice(1).split('/');
-      const fbshid = searchParams.get('fbshid');
 
       return new Response(
         html({
@@ -101,7 +109,7 @@ export default {
       );
     } catch (e) {
       console.log('\n\n', e, '\n\n');
-      return new Response('Not found', { status: 404 });
+      return new Response('Not found', { status: 400 });
     }
   },
 };
